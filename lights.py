@@ -147,11 +147,11 @@ class PointLight(object):
     def getShadowIntensity(self, intersect, raytracer):
         light_dir = lpm.suma_o_resta_vectores(self.point, intersect.point, True)
         light_dir = lpm.normalizaVector(light_dir)
-
         shadow_intensity = 0
         shadow_intersect = raytracer.scene_intersect(intersect.point, light_dir, intersect.sceneObj)
         if shadow_intersect:
-            shadow_intensity = 1
+            if shadow_intersect.distance<lpm.magnitud_vector(light_dir):
+                shadow_intensity = 1
 
         return shadow_intensity
 
