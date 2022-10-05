@@ -34,40 +34,9 @@ rtx = Raytracer(width, height)
 # rtx.envMap = Texture("casita.bmp")
 
 rtx.lights.append( AmbientLight(intensity = 0.1 ))
-rtx.lights.append( DirectionalLight(direction = (-1,-1,-1), intensity = 0.8 ))
-rtx.lights.append( DirectionalLight(direction = (-1,0,0), intensity = 0.2 ))
+rtx.lights.append(PointLight((centrox, centroy, centroz)))
 
-#rtx.lights.append( PointLight(point = (0,0,0)))
-
-""" rtx.scene.append( Sphere(V3(-3+centrox,3+centroy,-10), 1, material_opaco1)  )
-rtx.scene.append( Sphere(V3(0+centrox,3+centroy,-10), 1, material_opaco2)  )
-rtx.scene.append( Sphere(V3(3+centrox,3+centroy,-10), 1, material_reflectivo1)  )
-
-rtx.scene.append( Sphere(V3(-3+centrox,0+centroy,-10),1, material_reflectivo2)  )
-rtx.scene.append( Sphere(V3(0+centrox,0+centroy,-10), 1, material_transparente1)  )
-rtx.scene.append( Sphere(V3(3+centrox,0+centroy,-10), 1, material_transparente2)  ) 
- """
-""" rtx.scene.append(Plane(position=(0, -10,0), normal=(0, 1, 0), material=brick))
-rtx.scene.append(Plane(position=(centro, 0,0), normal=(2, 0, 1), material=brick)) """
-
-# rtx.scene.append(Plane(position=(0, -10, 0), normal=(0, 1,0), material=brick))
-""" rtx.scene.append(Plane(position=(-40, 10, 0), normal=(1, 0,0), material=brick))
-rtx.scene.append(Plane(position=(-40, 10, 0), normal=(-1, 0,0), material=brick)) """
-# rtx.scene.append(Plane(position=(-40, 10, 0), normal=(0, 1,0), material=brick))
-""" rtx.scene.append(Plane(position=(-40, 10, 0), normal=(0, -1,0), material=brick))
-"""
-plano_1 = Plane(position=(centrox, centroy, centroz-70), normal=(0, 0, 1), material=brick) # Fondo
-plano_2 = Plane(position=(centrox, centroy, centroz-100), normal=(1, 0, -0.5), material=stone) #Plane() #Derecha
-plano_3 =  Plane(position=(centrox, centroy, centroz-100), normal=(-1, 0, -0.5), material=material_opaco1) #Plane() #Izquierda
-plano_4 = Plane(position=(centrox, centroy, centroz-100), normal=(0, 1, 0.5), material=material_opaco2) #Plane() #Abajo
-plano_5 = None #Plane(position=(centrox, centroy+40, centroz-100), normal=(0, 1, 0.5), material=material_opaco2) #Plane() #Arriba
-cubo_1 = None # AABB
-cubo_2 = None # AABB
-elementos_escena = [plano_1, plano_2, plano_3, plano_4, plano_5, cubo_1, cubo_2]
-for element in elementos_escena:
-    if element: rtx.scene.append(element)
-
-
+rtx.scene.append(Cilinder(position=(centrox, 3+centroy, -10), radio= 2, height=2, material= material_opaco1))
 # rtx.scene.append(Plane(position=(100, 10, 0), normal=(0, 1,0), material=brick))
 
 # rtx.scene.append(AABB(position=(0, 0, 0), size = (.1, 1, 1), material=brick))

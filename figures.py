@@ -1,3 +1,4 @@
+from code import interact
 from pickletools import read_unicodestring1
 from turtle import pos
 import lpmath as lpm
@@ -164,3 +165,23 @@ class Disk(object):
         contact =  lpm.magnitud_vector(lpm.suma_o_resta_vectores(intersect.point, self.plane.position, True))
         if contact > self.radius: return None 
         return Intersect(distance=intersect.distance, point=intersect.point, normal=self.plane.normal, textCoords=None, sceneObj=self)
+
+class Cilinder(object): 
+
+    def __init__(self, position, radio, height, material) -> None:
+        self.radio = radio
+        self.height = height
+        self.material = material
+        self.position = position
+        self.upper_disk: Disk = Disk([self.position[0], self.position[1]+self.height/2, self.position[2]], self.radio, (0, 1, 0), self.material)
+        self.down_disk: Disk = Disk([self.position[0], self.position[1]-self.height/2, self.position[2]], self.radio, (0, -1, 0), self.material)
+
+
+    def ray_intersect(self, orig, dir):
+        intersect = self.upper_disk.ray_intersect(orig, dir) 
+        if intersect: 
+            return intersect
+        intersect = self.down_disk.ray_intersect(orig, dir)
+        if intersect: 
+            return intersect
+        return None
